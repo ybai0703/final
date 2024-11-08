@@ -1,11 +1,10 @@
 let density = 0.0005; // Background Line Density
 let squareColor, strokeColor, baseColors;
 let baseUnits = []; // An array to contain rectangular base
-let timeOffset = 0;
+let timeOffset = 0; //initialize the timeOffset as 0
 let noiseoffset = 0;
 let particles = [];
 let frameCount = 0;
-
 
 // BicolorCircle class
 class BicolorCircle {
@@ -63,8 +62,6 @@ class Particle {
   }
 }
 
-
-
 // RectangleUnit Class
 class RectangleUnit {
   constructor(x, y, width, height, color) {
@@ -76,7 +73,6 @@ class RectangleUnit {
     this.semicircleDiameter = random(width * 0.5, width * 0.75);
     this.bottomSemicircleColor = random(baseColors);
   }
-
   display() {
     let noiseFactor = noise(this.x * 0.01, timeOffset) * 5;
     let animatedY = this.y + noiseFactor;//Use perlin noise to change the Y coordinate of the small square
@@ -306,20 +302,17 @@ function drawConnectedCircles() {
 }
 
 
-
-
-
 function drawGreenSquares() {
   let squareSize = height * 0.1;
   let numSquares = width / squareSize;
   let yPositionBase = height * 0.7;
 
-
   for (let i = 0; i < numSquares; i++) {
     // Use the sin() function to implement wave motion
-    let waveSpeed = frameCount * 0.05; // the speed of the waves
-    let yOffset = sin(i * 0.5 + waveSpeed) * 10; // the height of the wave
+    let waveSpeed = frameCount * 0.08; // the speed of the waves
+    let yOffset = sin(i * 0.5 + waveSpeed) * 15; // the height of the wave
     let noiseColorFactor = noise(i * 0.3, frameCount * 0.03);//use perlin noise to change the color of the squares
+    // use lerp to change the color between the two defined colors, while using  noisecolorfactor as Interpolation coefficient
     let dynamicColor = lerpColor(color('#69a27d'), color('#fc4b46'), noiseColorFactor);
     let rotation = noise(i * 0.1, frameCount * 0.01) * PI / 8; // Rotation effect
     push();
@@ -331,7 +324,6 @@ function drawGreenSquares() {
     pop();
   }
 }
-
 
 // create base
 function createBase() {
