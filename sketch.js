@@ -1,4 +1,4 @@
-let density = 0.0002; // Background Line Density
+let density = 0.0005; // Background Line Density
 let squareColor, strokeColor, baseColors;
 let baseUnits = []; // An array to contain rectangular base
 let timeOffset = 0;
